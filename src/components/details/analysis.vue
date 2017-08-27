@@ -270,6 +270,7 @@ export default{
             publish:newPub,
             bankId:this.chooseBank.id,
          }
+        // this.$post("");
       },
     }
   }

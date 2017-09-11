@@ -2,7 +2,7 @@
 	<div class="counter-component">
       <div class="counter-btn" @click="minus"> - </div>
       <div class="counter-show">
-        <input type="text" v-model="number" @keyup="fixNumber">
+        <input type="text" v-model="number"  @keyup="fixNumber">
       </div>
       <div class="counter-btn" @click="add"> + </div>
     </div>
@@ -12,7 +12,7 @@
 	export default{
 		data(){
 			return {
-				number:10,
+				number:this.minnum,
 				/*minnum:2,
 				maxnum:6*/
 			}
@@ -21,11 +21,11 @@
 		props:{
 			minnum: {
 		      type: Number,
-		      default: 10
+		      default: 0
 		    },
 		    maxnum: {
 		      type: Number,
-		      default: 14
+		      default: 10
     		}
 		},//子组件接受父组件的属性
 		computed:{},//计算属性
@@ -63,7 +63,6 @@
 				}else{
 					newnumber=this.number;
 				}
-
 				if(this.number>this.maxnum || this.number<this.minnum){
 						newnumber=this.minnum;
 				}
@@ -77,9 +76,7 @@
 		mouneted(){},//
 		created(){},
 		http:{},
-		components:{}//组件
-
-								
+		components:{}//组件								
 	}
 </script>
 

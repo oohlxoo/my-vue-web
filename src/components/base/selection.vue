@@ -24,13 +24,16 @@
             value:0
           }
         ]
-
-      }  
+      },
+      defaultValue:{
+        type:Number,
+        default:0
+      }
     },
     data(){
       return {
          toggleSel:false,
-         nowIndex:0
+         nowIndex:this.defaultValue
       }    
     },
     methods:{

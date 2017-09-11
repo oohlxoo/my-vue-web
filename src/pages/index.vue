@@ -16,7 +16,7 @@
 				<h2>最新消息</h2>
 				<template>
 					<ul>
-						<li v-for="item in newsList">
+						<li v-for="item in menuList">
 							<a :href="item.url">{{item.title}}</a>
 						</li>
 					</ul>
@@ -46,21 +46,7 @@ import slideShow from '../components/slideShow'
 		components:{
 			slideShow
 		},
-		created:function(){
-			this.$http.get('/api/getNewsList').
-			then((data)=>{
-					this.newsList=data.data;
-			},
-			(err)=>{
-					console.log(err);
-			})
-		},
-		methods:{
-			doSomething(){
-				//console.log("触发了父组件的事件");
-			}
-		},
-		data(){
+			data(){
 			return {
 				prodictList:{
 					pc:{
@@ -110,25 +96,6 @@ import slideShow from '../components/slideShow'
 						]
 					}
 				},
-				 newsList:[],/*[
-					{
-						title:'91助手',
-						url:'http://www.taobao.com'
-					},
-					{
-						title:'产品助手',
-						url:'http://www.taobao.com',
-						hot:true
-					},
-					{
-						title:'智能地图',
-						url:'http://www.taobao.com'
-					},
-					{
-						title:'团队语音',
-						url:'http://www.taobao.com'
-					}
-				],*/
 				boardList: [
 			        {
 			          title: '开放产品',
@@ -181,6 +148,20 @@ import slideShow from '../components/slideShow'
 			          href: 'detail/forecast'
 			        }
 			     ]
+			}
+		},
+		computed:{
+			menuList(){
+				return this.$store.state.menuList
+			}
+		},
+		mounted(){
+			this.$store.dispatch('fetchMenuList');
+		},
+		created:function(){},
+		methods:{
+			doSomething(){
+				//console.log("触发了父组件的事件");
 			}
 		}
 	}

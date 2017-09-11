@@ -10,7 +10,7 @@
               购买数量：
           </div>
           <div class="sales-board-line-right">  
-              <vcounter :minnum="10" :maxnum="14" @onChange="getParams('buyNum',$event)" ></vcounter>
+              <vcounter :minnum="10" :maxnum="14"  @onChange="getParams('buyNum',$event)" ></vcounter>
           </div>
       </div>
       <div class="sales-board-line">
@@ -18,7 +18,7 @@
               产品类型：
           </div>
           <div class="sales-board-line-right">
-           <vselection :vseleDataProp="vseleData" @onTypedata="getParams('buyType',$event)"></vselection>
+           <vselection :vseleDataProp="vseleData" :defaultValue="2"  @onTypedata="getParams('buyType',$event)"></vselection>
           </div>
       </div>
       <div class="sales-board-line">
@@ -34,7 +34,7 @@
               产品版本：
           </div>
           <div class="sales-board-line-right">
-              <vcheckbox  :piblishdata="piblishdataparent" @onChange="getParams('publish',$event)"></vcheckbox>
+              <vcheckbox  :piblishdata="piblishdataparent" :defaultValue="1" @onChange="getParams('publish',$event)"></vcheckbox>
           </div>
       </div>
       <div class="sales-board-line">
@@ -154,9 +154,20 @@ export default{
     data(){
       return {
         buyNum:0,
-        buyType:{},
-        yxTime:{},
-        publish:[],
+        buyType:{
+          label:"客户端",
+          value:0
+        },
+        yxTime:{
+          label:'半年',
+          value:0
+        },
+        publish:{
+          label:"终极版",
+          value:1
+
+        }
+        ,
         bankId:0,
         testJson:[
           {id:1,name:"水晶蓝"},
@@ -243,7 +254,7 @@ export default{
           yxTime:this.yxTime.value,
           publish:newPub
         }
-       
+       console.log(obj);
        this.$http.get('/api/getPrice',obj).then(
          (res)=>{
           this.price=res.data.amount;
@@ -263,15 +274,30 @@ export default{
          this.chooseBank=data;
       },
       confirmBuy(){
-         let params={
+        var newPub= this.publish.map(function (item) { //ES6 的数组操作方法 map
+              return item.value
+        });
+        let params={
             buyNum:this.buyNum,
             buyType:this.buyType.value,
             yxTime:this.yxTime.value,
             publish:newPub,
             bankId:this.chooseBank.id,
          }
-        // this.$post("");
-      },
+         console.log(params);
+        this.$http.post("/api/createOrder",params).then((res)=>{
+            console.log(res.data.orderId);
+            
+        },(err)=>{
+
+        });
+      }
+    },
+    mounted(){
+      this.buyNum = 1;
+      this.buyType = [this.piblishdataparent[0]];
+      this.yxTime = [this.checkdataparent[0]];
+    
     }
   }
 </script>

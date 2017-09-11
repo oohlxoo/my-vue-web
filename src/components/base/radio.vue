@@ -4,8 +4,7 @@
       <div class="chooser-component">
         <ul class="chooser-list">
           <li v-for="(item,index) in selections" :key="index" @click="choosemyself(index)" 
-            :class="{active:(index===nowIndex)}"
-          >
+            :class="{active:(index===nowIndex)}">
           {{item.label}}
           </li>
         </ul>
@@ -39,9 +38,6 @@ export default{
   computed:{},
   mounted(){},
   components:{}
-
-
-
 }
 
 </script>

@@ -42,7 +42,13 @@
 		          name: '广告发布',
 		          path: 'publish',
 		          active: false
-		        }
+		        },
+             {
+              name: '订单详情',
+              path: 'orderlist',
+              active: false
+            }
+
 		      ],
           imgMap: {
             '/details/count': require("../assets/images/1.png"),

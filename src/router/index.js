@@ -6,6 +6,7 @@ import ForecastPage  from '../components/details/Forecast'
 import AnalysisPage  from '../components/details/analysis'
 import CountPage  from '../components/details/count'
 import PublishPage  from '../components/details/publish'
+import orderList  from '../components/details/orderList'
 
 
 
@@ -41,6 +42,11 @@ export default new Router({
 		  		path:"publish",
 		  		component:PublishPage
 		  	},
+		  	{
+		  		path:"orderlist",
+		  		component:orderList
+		  	}
+		  	
 		  ]
 		}
 	]

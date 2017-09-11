@@ -28,7 +28,17 @@
     "publish": "0,1,2"
   },
   "createOrder": {
-    "orderId": "6djk979"
+    "buyNum": 1,
+    "publish": [],
+    "bankId": 501
+  },
+  "getOrderList": {
+    "query": "",
+    "productId": 0
+  },
+  "login": {
+    "username": "oo@",
+    "userId": 123123
   },
   "getOrderList": {
     "list": [
@@ -60,12 +70,6 @@
         "amount": "7890元"
       }
     ]
-  },
-  "login": {
-    "username": "oo@",
-    "userId": 123123
-  },
-  "createOrder": {
-    "orderId": "6djk979"
   }
+
 }
